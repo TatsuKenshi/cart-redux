@@ -8,17 +8,19 @@ function App() {
   const { isLoading } = useCartContext();
 
   return (
-    <div className="bg-violet-800 h-screen w-screen">
-      <Navbar />
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <>
-          <ItemContainer />
-          <Totals />
-        </>
-      )}
-    </div>
+    <>
+      <div className="bg-violet-800">
+        <Navbar />
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <>
+            <ItemContainer />
+            <Totals />
+          </>
+        )}
+      </div>
+    </>
   );
 }
 

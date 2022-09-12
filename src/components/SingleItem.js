@@ -19,7 +19,7 @@ const SingleItem = (item) => {
           <p>${price}</p>
           <button
             onClick={() => removeItem(id)}
-            className="px-1 bg-white rounded-md text-black hover:bg-slate-100"
+            className="px-1 bg-white rounded-md text-black hover:bg-slate-100 font-bold"
           >
             Remove Item
           </button>
