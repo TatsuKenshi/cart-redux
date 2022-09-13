@@ -5,7 +5,7 @@ import {
   REMOVE_ITEM,
   INCREASE_AMOUNT,
   DECREASE_AMOUNT,
-  GET_TOTALS,
+  GET_TOTAL,
   LOADING,
   DISPLAY_ITEMS,
 } from "../actions";
@@ -67,7 +67,7 @@ const CartProvider = ({ children }) => {
 
   // useEffect for calculating total price and number of items
   useEffect(() => {
-    dispatch({ type: GET_TOTALS });
+    dispatch({ type: GET_TOTAL });
   }, [state.cart]);
 
   return (

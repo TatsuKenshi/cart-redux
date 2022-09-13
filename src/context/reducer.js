@@ -1,3 +1,13 @@
+// reducer
+// reducer is a function that updates the store
+// reducer takes 2 args - state and action
+// state - old state/state before update
+// action - what we want to do and which state we're updating
+// return - must return old or updated state
+// dispatch method - sends actions to the store
+// action - must have type prop (what action it's sending)
+// never mutate the state - Redux is built on immutability
+
 const reducer = (state, action) => {
   if (action.type === "CLEAR_CART") {
     return { ...state, cart: [] };
@@ -10,26 +20,34 @@ const reducer = (state, action) => {
     };
   }
 
+  // if (action.type === "INCREASE_AMOUNT") {
+  //   let temporaryCart = state.cart.map((cartItem) => {
+  //     if (cartItem.id === action.payload) {
+  //       return { ...cartItem, amount: cartItem.amount + 1 };
+  //     }
+  //     return cartItem;
+  //   });
+  //   return { ...state, cart: temporaryCart };
+  // }
+
+  // if (action.type === "DECREASE_AMOUNT") {
+  //   let temporaryCart = state.cart
+  //     .map((cartItem) => {
+  //       if (cartItem.id === action.payload) {
+  //         return { ...cartItem, amount: cartItem.amount - 1 };
+  //       }
+  //       return cartItem;
+  //     })
+  //     .filter((cartItem) => cartItem.amount !== 0);
+  //   return { ...state, cart: temporaryCart };
+  // }
+
   if (action.type === "INCREASE_AMOUNT") {
-    let temporaryCart = state.cart.map((cartItem) => {
-      if (cartItem.id === action.payload) {
-        return { ...cartItem, amount: cartItem.amount + 1 };
-      }
-      return cartItem;
-    });
-    return { ...state, cart: temporaryCart };
+    return { ...state, amount: state.amount + 1 };
   }
 
-  if (action.type === "DECREASE_AMOUNT") {
-    let temporaryCart = state.cart
-      .map((cartItem) => {
-        if (cartItem.id === action.payload) {
-          return { ...cartItem, amount: cartItem.amount - 1 };
-        }
-        return cartItem;
-      })
-      .filter((cartItem) => cartItem.amount !== 0);
-    return { ...state, cart: temporaryCart };
+  if (action.type === "INCREASE_AMOUNT") {
+    return { ...state, amount: state.amount + 1 };
   }
 
   if (action.type === "GET_TOTALS") {

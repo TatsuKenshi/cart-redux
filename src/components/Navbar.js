@@ -1,10 +1,8 @@
 import React from "react";
-import { useCartContext } from "../hooks/useCartContext";
 import { ShoppingCartIcon } from "@heroicons/react/24/solid";
+import { connect } from "react-redux";
 
-const Navbar = () => {
-  const { numberOfItems } = useCartContext();
-
+const Navbar = ({ numberOfItems }) => {
   return (
     <nav className="flex bg-white justify-evenly h-16 text-black font-bold shadow-xl">
       <div className="my-auto">
@@ -22,4 +20,8 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+const mapStateToProps = (state) => {
+  console.log(state);
+  return { numberOfItems: state.numberOfItems };
+};
+export default connect(mapStateToProps)(Navbar);
