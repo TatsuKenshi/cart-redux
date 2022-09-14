@@ -1,13 +1,19 @@
 import React from "react";
 import { ChevronUpIcon } from "@heroicons/react/24/solid";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
-import { useCartContext } from "../hooks/useCartContext";
+import { connect } from "react-redux";
+import { REMOVE_ITEM, INCREASE_AMOUNT, DECREASE_AMOUNT } from "../actions";
 
-const SingleItem = (item) => {
-  const { id, title, price, img, amount } = item;
-
-  const { removeItem, increaseAmount, decreaseAmount } = useCartContext();
-
+const SingleItem = ({
+  id,
+  title,
+  price,
+  img,
+  amount,
+  removeItem,
+  increaseAmount,
+  decreaseAmount,
+}) => {
   return (
     <>
       <div className="flex mt-2 text-white">
@@ -40,4 +46,14 @@ const SingleItem = (item) => {
   );
 };
 
-export default SingleItem;
+const mapDispatchToProps = (dispatch, ownProps) => {
+  const { id } = ownProps;
+
+  return {
+    removeItem: () => dispatch({ type: REMOVE_ITEM, payload: { id } }),
+    increaseAmount: () => dispatch({ type: INCREASE_AMOUNT, payload: { id } }),
+    decreaseAmount: () => dispatch({ type: DECREASE_AMOUNT, payload: { id } }),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(SingleItem);

@@ -1,9 +1,8 @@
 import React from "react";
-import { useCartContext } from "../hooks/useCartContext";
+import { connect } from "react-redux";
+import { CLEAR_CART } from "../actions";
 
-const Totals = () => {
-  const { totalPrice, clearCart } = useCartContext();
-
+const Totals = ({ totalPrice, dispatch }) => {
   return (
     <>
       <div className="bg-white h-4/6">
@@ -15,7 +14,7 @@ const Totals = () => {
           </div>
           <div>
             <button
-              onClick={clearCart}
+              onClick={() => dispatch({ type: CLEAR_CART })}
               className="px-1 bg-violet-800 rounded-md text-white font-bold hover:bg-slate-300 hover:text-black"
             >
               Clear Cart
@@ -27,4 +26,8 @@ const Totals = () => {
   );
 };
 
-export default Totals;
+const mapStateToProps = (state) => {
+  return { totalPrice: state.totalPrice };
+};
+
+export default connect(mapStateToProps)(Totals);

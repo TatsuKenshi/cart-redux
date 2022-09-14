@@ -1,10 +1,8 @@
 import React from "react";
 import SingleItem from "./SingleItem";
-import { useCartContext } from "../hooks/useCartContext";
+import { connect } from "react-redux";
 
-const ItemContainer = () => {
-  const { cart } = useCartContext();
-
+const ItemContainer = ({ cart = [] }) => {
   return (
     <div className="w-11/12 md:w-8/12 mx-auto my-8 max-w-[1100px]">
       <div className="text-center">
@@ -19,4 +17,7 @@ const ItemContainer = () => {
   );
 };
 
-export default ItemContainer;
+const mapStateToProps = (state) => {
+  return { cart: state.cart };
+};
+export default connect(mapStateToProps)(ItemContainer);

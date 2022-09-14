@@ -21,7 +21,6 @@ const Navbar = ({ numberOfItems }) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return { numberOfItems: state.numberOfItems };
 };
 export default connect(mapStateToProps)(Navbar);
